@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barbie Glam Hair Booking</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --pink-500:#ff6fb7; /* main pink */
+      --pink-400:#ff99cc; /* soft pink */
+      --pink-300:#ffd1e8; /* pastel */
+      --pink-100:#fff1f8; /* blush */
+      --rose-50:#fff7fb;  /* background */
+      --white:#ffffff;
+      --text:#3a2b33;
+      --shadow: 0 10px 25px rgba(255, 105, 180, 0.15);
+      --radius: 22px;
+    }
+
+    *{box-sizing:border-box}
+    html, body { height: 100%; }
+    body{
+      margin:0;
+      color:var(--text);
+      background: linear-gradient(180deg,var(--rose-50), var(--pink-100));
+      font-family:'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height:1.55;
+    }
+
+    /* Subtle heart confetti background */
+    body::before{
+      content:"";
+      position:fixed; inset:0; pointer-events:none; opacity:.25;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,.6) 0 2px, transparent 3px) 0 0/60px 60px,
+        radial-gradient(circle at 70% 30%, rgba(255,255,255,.5) 0 2px, transparent 3px) 0 0/80px 80px,
+        radial-gradient(circle at 40% 80%, rgba(255,255,255,.5) 0 2px, transparent 3px) 0 0/70px 70px;
+      filter: blur(.3px);
+    }
+
+    /* Top Bar */
+    .topbar{
+      background: var(--white);
+      position: sticky; top:0; z-index:10;
+      box-shadow: var(--shadow);
+    }
+    .topbar-inner{
+      max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between;
+      padding: .8rem 1rem;
+    }
+    .brand{ display:flex; align-items:center; gap:.75rem; }
+    .brand .logo{
+      width:44px; height:44px; border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, var(--pink-400), var(--pink-500));
+      box-shadow: 0 6px 16px rgba(255,111,183,.45);
+      position:relative;
+    }
+    .brand .logo::after{
+      content:"❤"; position:absolute; inset:0; display:grid; place-items:center;
+      color:white; font-size:20px; text-shadow:0 2px 6px rgba(0,0,0,.15);
+    }
+    .brand h1{
+      font-family:'Pacifico', cursive;
+      font-size: clamp(1.3rem, 2.2vw, 2rem);
+      margin:0; color: var(--pink-500);
+      letter-spacing:.5px;
+    }
+    nav a{
+      text-decoration:none; font-weight:600; color:var(--text); font-size:clamp(.95rem,1.3vw,1.05rem);
+      padding:.55rem .9rem; border-radius: 999px; position:relative;
+    }
+    nav a:hover{
+      background:var(--pink-300);
+      color:#513244;
+    }
+
+    /* Hero */
+    .hero{
+      max-width:1200px; margin: 1.2rem auto 1.6rem; padding: clamp(1rem, 3vw, 1.8rem);
+      background: linear-gradient(135deg, var(--white), var(--pink-100));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display:grid; grid-template-columns: 1.1fr .9fr; gap: clamp(1rem, 3vw, 2rem);
+    }
+    .hero h2{
+      font-family:'Pacifico', cursive; color: var(--pink-500);
+      font-size: clamp(1.6rem, 3.6vw, 2.6rem);
+      margin:.2rem 0 .6rem;
+    }
+    .hero p{ font-size: clamp(1rem, 1.4vw, 1.125rem); }
+    .cta-bar{
+      display:flex; gap:.8rem; flex-wrap:wrap; margin-top:1rem;
+    }
+    .btn{
+      border:0; padding:.9rem 1.1rem; border-radius:14px; font-weight:700; cursor:pointer; transition:.2s ease;
+      font-size:1rem;
+    }
+    .btn-primary{ background: var(--pink-500); color:white; box-shadow: 0 8px 20px rgba(255,111,183,.35); }
+    .btn-primary:hover{ transform: translateY(-1px); filter:saturate(1.05); }
+    .btn-ghost{ background:var(--white); color:var(--pink-500); border:2px solid var(--pink-300); }
+
+    .hero .hero-art{
+      border-radius: 18px; overflow:hidden; position:relative; min-height: 230px;
+    }
+    .hero .hero-art img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .price-ribbon{
+      position:absolute; right:12px; top:12px; background:var(--white); color:var(--pink-500);
+      border-radius: 999px; padding:.5rem .9rem; font-weight:800; box-shadow: var(--shadow);
+      font-size: clamp(.95rem, 1.3vw, 1.05rem);
+    }
+
+    /* Services Grid */
+    .section{ max-width: 1200px; margin: 1rem auto 2rem; padding: 0 clamp(1rem, 3vw, 1.25rem); }
+    .section h3{
+      font-family:'Pacifico', cursive; color:var(--pink-500);
+      font-size: clamp(1.4rem, 2.6vw, 2rem);
+      margin: 1.2rem 0 .6rem;
+    }
+
+    .grid{
+      display:grid; gap: 18px;
+      grid-template-columns: repeat(12, 1fr);
+    }
+
+    .service-card{
+      grid-column: span 6; /* 2-up on desktop, 1-up on mobile */
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display:flex; gap:12px; align-items:stretch; overflow:hidden;
+    }
+    .service-img{ flex: 0 0 48%; position:relative; }
+    .service-img img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .price-badge{
+      position:absolute; right:10px; top:10px; background: var(--pink-500); color:white; font-weight:800;
+      padding:.5rem .8rem; border-radius: 999px; box-shadow: 0 6px 16px rgba(255,111,183,.35);
+      font-size: clamp(.95rem, 1.2vw, 1rem);
+    }
+    .service-info{ flex:1; padding: 14px 14px 14px 4px; display:flex; flex-direction:column; justify-content:space-between; }
+    .service-info h4{ margin:.2rem 0 .35rem; font-size: clamp(1.05rem, 1.5vw, 1.2rem); }
+    .service-info p{ margin:0 0 .6rem; font-size: clamp(.95rem, 1.2vw, 1.05rem); color:#5c4f56; }
+
+    .meta{ display:flex; gap:.6rem; flex-wrap:wrap; font-size:.9rem; color:#7a6671; }
+    .meta span{ background: var(--pink-100); border:1px solid var(--pink-300); padding:.25rem .55rem; border-radius:999px; }
+
+    .card-actions{ display:flex; gap:.6rem; align-items:center; margin-top:.5rem; }
+    .btn-mini{ font-size:.95rem; padding:.6rem .9rem; border-radius:12px; font-weight:700; border:2px solid transparent; }
+    .btn-mini.primary{ background:var(--pink-500); color:white; }
+    .btn-mini.secondary{ background:var(--white); color:var(--pink-500); border-color: var(--pink-300); }
+
+    /* Booking Form */
+    .booking{
+      background: linear-gradient(135deg, var(--white), var(--pink-100));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(1rem, 3vw, 1.5rem);
+      display:grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .booking label{ font-weight:700; font-size:.95rem; }
+    .booking input, .booking select, .booking textarea{
+      width:100%; margin-top:.35rem; padding: .85rem .95rem; border-radius:14px; border:1.5px solid var(--pink-300);
+      background: var(--white); font-size:1rem; outline:none;
+    }
+    .booking textarea{ min-height:120px; resize:vertical; }
+    .full{ grid-column: span 2; }
+
+    .submitbar{ display:flex; justify-content:flex-end; gap:.6rem; }
+
+    /* Footer */
+    footer{ text-align:center; padding: 30px 12px 60px; color:#795a6a; font-size:.95rem; }
+
+    /* Responsiveness */
+    @media (max-width: 980px){
+      .hero{ grid-template-columns: 1fr; }
+      .service-card{ grid-column: span 12; }
+    }
+    @media (max-width: 720px){
+      .service-card{ flex-direction:column; }
+      .service-img{ flex-basis:auto; height: 220px; }
+      .booking{ grid-template-columns: 1fr; }
+      .full{ grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Bar -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <h1>Barbie Glam Studio</h1>
+      </div>
+      <nav>
+        <a href="#services">Styles</a>
+        <a href="#booking">Book</a>
+        <a href="#policies">Policies</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" aria-label="Welcome to Barbie Glam Studio">
+    <div>
+      <h2>Soft, shiny & totally Barbie ✨</h2>
+      <p>
+        Treat yourself to glam that turns heads. From silk presses to knotless braids and flawless installs, we keep it cute, comfy, and photo‑ready.
+      </p>
+      <div class="cta-bar">
+        <a class="btn btn-primary" href="#booking">Book an Appointment</a>
+        <a class="btn btn-ghost" href="#services">Browse Styles</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1600&auto=format&fit=crop" alt="Glam hairstyle with curls" />
+      <div class="price-ribbon">New Client Special ✿</div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section" id="services">
+    <h3>Popular Styles</h3>
+    <div class="grid">
+      <!-- Card 1 -->
+      <article class="service-card">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop" alt="Silk press on natural hair" />
+          <div class="price-badge">$85</div>
+        </div>
+        <div class="service-info">
+          <div>
+            <h4>Silk Press</h4>
+            <p>Sleek, silky, and bouncy finish with heat protection and trim if needed.</p>
+            <div class="meta">
+              <span>1.5–2 hrs</span>
+              <span>Shampoo + Style</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <a href="#booking" class="btn-mini primary">Book</a>
+            <a href="#policies" class="btn-mini secondary">Details</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="service-card">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1600&auto=format&fit=crop" alt="Knotless braids" />
+          <div class="price-badge">$220</div>
+        </div>
+        <div class="service-info">
+          <div>
+            <h4>Knotless Braids (Medium)</h4>
+            <p>Lightweight, painless braids with a naturally seamless look.</p>
+            <div class="meta">
+              <span>4–6 hrs</span>
+              <span>Hair Included</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <a href="#booking" class="btn-mini primary">Book</a>
+            <a href="#policies" class="btn-mini secondary">Details</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="service-card">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1559599189-95f32f16f14b?q=80&w=1600&auto=format&fit=crop" alt="Sew-in with curls" />
+          <div class="price-badge">$180</div>
+        </div>
+        <div class="service-info">
+          <div>
+            <h4>Sew‑In Install</h4>
+            <p>Versatile, long‑lasting install with leave‑out or closure styling.</p>
+            <div class="meta">
+              <span>3–4 hrs</span>
+              <span>Shampoo + Braid Down</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <a href="#booking" class="btn-mini primary">Book</a>
+            <a href="#policies" class="btn-mini secondary">Details</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="service-card">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=1600&auto=format&fit=crop" alt="Lace wig install" />
+          <div class="price-badge">$160</div>
+        </div>
+        <div class="service-info">
+          <div>
+            <h4>Lace Wig Install</h4>
+            <p>Melted hairline with pluck, tint & secure styling. Bring wig washed.</p>
+            <div class="meta">
+              <span>2–3 hrs</span>
+              <span>Glue or Glueless</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <a href="#booking" class="btn-mini primary">Book</a>
+            <a href="#policies" class="btn-mini secondary">Details</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Booking Form -->
+  <section class="section" id="booking" aria-label="Book an appointment">
+    <h3>Book Your Appointment</h3>
+    <form class="booking" action="#" method="post">
+      <div>
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Barbie Dreamgirl" required />
+      </div>
+      <div>
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="(555) 123‑4567" required />
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required />
+      </div>
+      <div>
+        <label for="service">Select Style</label>
+        <select id="service" name="service" required>
+          <option value="">Choose a service…</option>
+          <option>Silk Press — $85</option>
+          <option>Knotless Braids (Medium) — $220</option>
+          <option>Sew‑In Install — $180</option>
+          <option>Lace Wig Install — $160</option>
+        </select>
+      </div>
+      <div>
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" required />
+      </div>
+      <div>
+        <label for="time">Time</label>
+        <input type="time" id="time" name="time" required />
+      </div>
+      <div class="full">
+        <label for="notes">Notes (optional)</label>
+        <textarea id="notes" name="notes" placeholder="Allergies, preferred stylist, hair goals…"></textarea>
+      </div>
+      <div class="full submitbar">
+        <button class="btn btn-ghost" type="reset">Clear</button>
+        <button class="btn btn-primary" type="submit">Submit Request</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Policies -->
+  <section class="section" id="policies" aria-label="Salon policies">
+    <h3>Salon Policies</h3>
+    <p style="max-width:78ch;">
+      Please arrive with detangled hair unless otherwise noted. A non‑refundable deposit may be required to confirm your slot. Late arrivals over 15 minutes may need to reschedule. Cancellations within 24 hours may incur a fee.
+    </p>
+  </section>
+
+  <footer>
+    © <span id="year"></span> Barbie Glam Studio · All love, all hair textures ♡
+  </footer>
+
+  <script>
+    // Keep the year current (no visual bloat)
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

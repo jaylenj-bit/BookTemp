@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlamouredbyMulan | Policies</title>
+
+  <!-- Google Fonts (same as main site) -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --pink-500:#ff6fb7;
+      --pink-400:#ff99cc;
+      --pink-300:#ffd1e8;
+      --pink-100:#fff1f8;
+      --rose-50:#fff7fb;
+      --white:#ffffff;
+      --text:#3a2b33;
+      --shadow: 0 10px 25px rgba(255, 105, 180, 0.15);
+      --radius: 22px;
+    }
+
+    *{box-sizing:border-box}
+    html, body { height: 100%; }
+    body{
+      margin:0;
+      color:var(--text);
+      background: linear-gradient(180deg,var(--rose-50), var(--pink-100));
+      font-family:'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height:1.55;
+    }
+
+    /* Subtle confetti background */
+    body::before{
+      content:"";
+      position:fixed; inset:0; pointer-events:none; opacity:.25;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,.6) 0 2px, transparent 3px) 0 0/60px 60px,
+        radial-gradient(circle at 70% 30%, rgba(255,255,255,.5) 0 2px, transparent 3px) 0 0/80px 80px,
+        radial-gradient(circle at 40% 80%, rgba(255,255,255,.5) 0 2px, transparent 3px) 0 0/70px 70px;
+      filter: blur(.3px);
+    }
+
+    /* Top Bar */
+    .topbar{
+      background: var(--white);
+      position: sticky; top:0; z-index:10;
+      box-shadow: var(--shadow);
+    }
+    .topbar-inner{
+      max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between;
+      padding: .8rem 1rem;
+    }
+    .brand{ display:flex; align-items:center; gap:.75rem; }
+    .brand .logo{
+      width:44px; height:44px; border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, var(--pink-400), var(--pink-500));
+      box-shadow: 0 6px 16px rgba(255,111,183,.45);
+      position:relative;
+    }
+    .brand .logo::after{
+      content:"❤"; position:absolute; inset:0; display:grid; place-items:center;
+      color:white; font-size:20px; text-shadow:0 2px 6px rgba(0,0,0,.15);
+    }
+    .brand h1{
+      font-family:'Pacifico', cursive;
+      font-size: clamp(1.3rem, 2.2vw, 2rem);
+      margin:0; color: var(--pink-500);
+      letter-spacing:.5px;
+    }
+
+    nav a{
+      text-decoration:none; font-weight:600; color:var(--text);
+      font-size:clamp(.95rem,1.3vw,1.05rem);
+      padding:.55rem .9rem; border-radius: 999px;
+    }
+    nav a:hover{
+      background:var(--pink-300);
+      color:#513244;
+    }
+
+    /* Hero / Page Header */
+    .hero{
+      max-width:1200px; margin: 1.2rem auto 1.2rem;
+      padding: clamp(1rem, 3vw, 1.8rem);
+      background: linear-gradient(135deg, var(--white), var(--pink-100));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display:flex; flex-wrap:wrap; gap: 1rem; align-items:center; justify-content:space-between;
+    }
+    .hero h2{
+      font-family:'Pacifico', cursive; color: var(--pink-500);
+      font-size: clamp(1.7rem, 3.2vw, 2.6rem);
+      margin:.2rem 0 .2rem;
+    }
+    .hero p{ margin:0; max-width: 70ch; color:#5c4f56; }
+    .pill{
+      background: var(--white);
+      border:1.5px solid var(--pink-300);
+      border-radius: 999px;
+      padding: .55rem .85rem;
+      font-weight: 700;
+      color: var(--pink-500);
+      box-shadow: 0 8px 18px rgba(255,111,183,.18);
+      white-space: nowrap;
+    }
+
+    /* Layout */
+    .section{
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+      padding: 0 clamp(1rem, 3vw, 1.25rem);
+    }
+
+    /* Cards */
+    .grid{
+      display:grid; gap: 18px;
+      grid-template-columns: repeat(12, 1fr);
+      margin-top: 1rem;
+    }
+    .card{
+      grid-column: span 6;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px 16px 14px;
+      border: 1px solid rgba(255, 209, 232, .65);
+    }
+    .card h3{
+      margin: 0 0 .35rem;
+      font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+    }
+    .card p{ margin: 0 0 .65rem; color:#5c4f56; }
+    .bullets{
+      margin: .2rem 0 0 1.1rem;
+      color:#5c4f56;
+    }
+    .bullets li{ margin: .35rem 0; }
+
+    .note{
+      margin-top: 1.1rem;
+      background: linear-gradient(135deg, var(--white), var(--pink-100));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 14px 16px;
+      border: 1px solid rgba(255, 209, 232, .65);
+      max-width: 90ch;
+    }
+    .note strong{ color: var(--pink-500); }
+
+    /* Footer */
+    footer{ text-align:center; padding: 30px 12px 60px; color:#795a6a; font-size:.95rem; }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .card{ grid-column: span 12; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Top Bar -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <h1>GlamouredbyMulan</h1>
+      </div>
+      <nav>
+        <!-- Update these links to match your file names -->
+        <a href="index.html#services">Styles</a>
+        <a href="index.html#booking">Book</a>
+        <a href="policies.html">Policies</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="hero" aria-label="Policies page header">
+    <div>
+      <h2>Salon Policies ♡</h2>
+      <p>
+        These policies keep appointments smooth, on-time, and stress-free for everyone. If you have questions, just ask!
+      </p>
+    </div>
+    <div class="pill">Please read before booking ✿</div>
+  </section>
+
+  <main class="section">
+    <div class="grid">
+      <!-- 1) Deposits -->
+      <section class="card" aria-label="Deposit policy">
+        <h3>Deposits & Payment</h3>
+        <p>Deposits help secure your appointment time.</p>
+        <ul class="bullets">
+          <li><strong>Deposit:</strong> A non-refundable deposit may be required to confirm your slot.</li>
+          <li><strong>Remaining balance:</strong> Due at the appointment (cash, card, or preferred method).</li>
+          <li><strong>No-shows:</strong> Deposit is forfeited and rebooking may require a new deposit.</li>
+        </ul>
+      </section>
+
+      <!-- 2) Cancellations -->
+      <section class="card" aria-label="Cancellation policy">
+        <h3>Cancellations & Rescheduling</h3>
+        <p>Life happens — just communicate early.</p>
+        <ul class="bullets">
+          <li><strong>24-hour notice:</strong> Cancellations within 24 hours may incur a fee.</li>
+          <li><strong>Rescheduling:</strong> Please reschedule as soon as possible to protect your deposit.</li>
+          <li><strong>Emergency situations:</strong> We’ll work with you case-by-case.</li>
+        </ul>
+      </section>
+
+      <!-- 3) Late policy -->
+      <section class="card" aria-label="Late arrival policy">
+        <h3>Late Arrivals</h3>
+        <p>Being on time keeps the day running smoothly.</p>
+        <ul class="bullets">
+          <li><strong>Grace period:</strong> 10–15 minutes (depending on the style/time booked).</li>
+          <li><strong>15+ minutes late:</strong> You may need to reschedule (deposit may be forfeited).</li>
+          <li><strong>Repeated lateness:</strong> May require prepayment for future bookings.</li>
+        </ul>
+      </section>
+
+      <!-- 4) Prep -->
+      <section class="card" aria-label="Hair prep policy">
+        <h3>Hair Prep</h3>
+        <p>Arriving prepared helps you get the best results.</p>
+        <ul class="bullets">
+          <li>Please arrive with <strong>detangled hair</strong> unless otherwise noted.</li>
+          <li>If your service includes shampoo, come with hair free of heavy product buildup.</li>
+          <li>Excessive detangling/matting may add time and an additional fee.</li>
+        </ul>
+      </section>
+
+      <!-- 5) Style specifics -->
+      <section class="card" aria-label="Service details policy">
+        <h3>Service Details</h3>
+        <p>Make sure you choose the correct style when booking.</p>
+        <ul class="bullets">
+          <li>Prices listed are starting prices and may vary by length/thickness.</li>
+          <li>Hair included only when stated in the style description.</li>
+          <li>Please arrive with inspiration photos if you have a specific look in mind.</li>
+        </ul>
+      </section>
+
+      <!-- 6) Guests -->
+      <section class="card" aria-label="Guests policy">
+        <h3>Guests & Children</h3>
+        <p>For comfort and focus, space is limited.</p>
+        <ul class="bullets">
+          <li>One guest max (or none, depending on studio policy).</li>
+          <li>Children must be supervised at all times.</li>
+          <li>Excess guests may be asked to wait outside.</li>
+        </ul>
+      </section>
+
+      <!-- 7) Health / safety -->
+      <section class="card" aria-label="Health and safety policy">
+        <h3>Health & Safety</h3>
+        <p>Your safety and scalp health matter.</p>
+        <ul class="bullets">
+          <li>Please disclose allergies/sensitivities in the booking notes.</li>
+          <li>If you have an active scalp condition (open sores, severe irritation), service may be declined.</li>
+          <li>Clean tools and sanitation are practiced between clients.</li>
+        </ul>
+      </section>
+
+      <!-- 8) Refunds -->
+      <section class="card" aria-label="Refund policy">
+        <h3>Refunds & Adjustments</h3>
+        <p>We want you to love your hair.</p>
+        <ul class="bullets">
+          <li>Deposits are non-refundable.</li>
+          <li>All services are final — no refunds after completion.</li>
+          <li>If something isn’t right, contact us within <strong>24–48 hours</strong> for an adjustment (if applicable).</li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="note" aria-label="Important note">
+      <strong>Tip:</strong> Want these policies to automatically appear on your main booking page too?
+      Copy the “Salon Policies” section from this page and paste it into your index.html (or link to this page using a button).
+    </div>
+  </main>
+
+  <footer>
+    © <span id="year"></span> GlamouredbyMulan · Policies made with love ♡
+  </footer>
+
+  <script>
+    // Keep the year current
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
